@@ -56,9 +56,9 @@ def auto(a,u) : #a는 차시수, u는 강의 목록 세가지 중에서 순서 (
 
 
 
-def auto2() :
-    with open("idpw.txt","r") as e :
-        id,pw = e.readlines()
+def auto2(s,e) : # s차시부터 e차시까지
+    with open("idpw.txt","r") as f :
+        id,pw = f.readlines()
     id = id.strip()
     print(id,pw)
     browser = webdriver.Chrome("./chromedriver.exe")
@@ -76,7 +76,7 @@ def auto2() :
     elem = browser.find_element_by_xpath("//*[@id='contents']/div/form/table/tbody/tr[3]/td[1]/a")
     elem.click()
 
-    for p in range(2,12) :
+    for p in range(s+1,e+2) :
         browser.switch_to.window(browser.window_handles[1])
         time.sleep(2)
         elem = browser.find_element_by_xpath(f"//*[@id='ItemList']/table/tbody/tr[{p}]/td[2]/a")
